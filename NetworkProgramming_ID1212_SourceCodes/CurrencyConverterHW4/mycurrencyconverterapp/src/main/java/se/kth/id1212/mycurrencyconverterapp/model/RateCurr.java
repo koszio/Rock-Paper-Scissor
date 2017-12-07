@@ -9,8 +9,7 @@ package se.kth.id1212.mycurrencyconverterapp.model;
  *
  * @author koszio
  */
-public interface ConverterDTO {
-    
-  
+
+public class RateCurr {
     
 }

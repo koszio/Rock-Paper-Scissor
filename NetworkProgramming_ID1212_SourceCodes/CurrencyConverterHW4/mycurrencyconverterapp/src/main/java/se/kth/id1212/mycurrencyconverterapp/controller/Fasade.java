@@ -17,9 +17,13 @@ import se.kth.id1212.mycurrencyconverterapp.model.Currency;
  *
  * @author koszio
  */
+
+
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
 public class Fasade {
+    
+   
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -27,16 +31,21 @@ public class Fasade {
     private EntityManager em;
 
 //Need to persist currencies ....
-    public long convertCurrency(long amount, String fromCurr, String toCurr) {
+    public boolean convertCurrency(long amount, String fromCurr, String toCurr) {
         long rateIn = 0;
         long rateOut = 0;
     Currency curr = null;
   
-    
+    Currency enCur = new Currency(fromCurr, amount);
+  em.persist(enCur);
+
+  System.out.println("done");
+
+  
 //loop through a list that has all th currency types 
    // for(Currency curr : currencyTypes){
         
-        
+     /*   
         if(curr.getName().equals(fromCurr)){
             rateIn = curr.getRate();
         }
@@ -45,14 +54,22 @@ public class Fasade {
             rateOut = curr.getRate();
         }
      //}
-       return amount *(rateIn/rateOut);
-    
+       return amount *(rateIn/rateOut);*/
+        return true;
+       
+       
+        
     }
 
    /* public long getCurrencyRate(String currencyType) {
 
     }*/
 
-   
+    public List<String> findCurrency() {
+        return em.createQuery("SELECT c.id From CURRENCY c").getResultList();
+    }
+    
 
+   
+    
 }

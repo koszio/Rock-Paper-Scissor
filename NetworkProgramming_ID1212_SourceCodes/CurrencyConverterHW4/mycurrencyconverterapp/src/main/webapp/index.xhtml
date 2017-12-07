@@ -9,6 +9,14 @@
         <h1>Welcome to the Currency Converter App!</h1>
         
         <h3>Current account</h3>
+        <p>
+            <h:outputLabel for="" rendered="#{ConvtManager.init != null}"  value="Account Number: "/>
+           
+        </p>
+        <p>
+        <h:commandButton value="Currency" action="#{ConvManager.init}"/>
+                  </p>
+     
       
     </h:body>
 </html>
