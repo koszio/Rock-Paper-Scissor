@@ -2,34 +2,44 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Welcome to the Currency Converter</title>
+        <title>Currency Converter</title>
         <style>body{text-align: center;}</style>
     </h:head>
     <h:body>
-        <h1>Welcome to the Currency Converter</h1>
-        <hr/>
+        <h1>Welcome to Currency Converter!</h1>
+        <h3>You may choose among SEK, EUR, USD and GBP currency to convert to and from</h3>
         <h:form>
-            <h3>Currency Converter</h3>
-            <h3>You may choose among SEK, EURO, GBP and USD</h3>
             <p>
-                <h:outputLabel for="convertCurrency" rendered="#{convManager.converted != null}"  value="The amount corresponds to: "/>
-                <h:outputText id="convertCurrency" value="#{convManager.converted}"/>
+                <h:outputLabel for="convertCurrency" rendered="#{convManager.converted != null}"/>
+                <h:outputText id="convertCurrency" value="#{convManager.converted} #{convManager.toCurr}"/>
                 <h:outputText rendered="#{convManager.converted == null}"  value="Result to be shown here."/>
                 <hr/>
-                <h:outputLabel for="fromCurr" value="Currency From "/>
-                <h:inputText id="fromCurr" value="#{convManager.fromCurr}"/>
-                <h:outputLabel for="toCurr" value="Currency To: "/>
-                <h:inputText id="toCurr" value="#{convManager.toCurr}"/>
-                <hr/>
-                <h:outputLabel for="amount" value="Enter the amount you wish to convert: "/>
+                <h:outputText value =" From:"/>
+                <h:selectOneMenu value="#{convManager.fromCurr}">
+                    <f:selectItem itemValue="EURO" itemLabel="EURO"/>
+                    <f:selectItem itemValue="SEK" itemLabel="SEK"/>
+                    <f:selectItem itemValue="GBP" itemLabel="GBP"/>
+                    <f:selectItem itemValue="USD" itemLabel="USD"/>
+                </h:selectOneMenu>
+                <h:outputText value =" To:"/>
+                <h:selectOneMenu value="#{convManager.toCurr}">
+                    <f:selectItem itemValue="EURO" itemLabel="EURO"/>
+                    <f:selectItem itemValue="SEK" itemLabel="SEK"/>
+                    <f:selectItem itemValue="GBP" itemLabel="GBP"/>
+                    <f:selectItem itemValue="USD" itemLabel="USD"/>
+                </h:selectOneMenu>
+  
+                <h:outputLabel for="amount" value="Amount: "/>
                 <h:inputText id="amount" value="#{convManager.amount}"/>
+                <hr/>
             </p>
             <p>
-                <h:commandButton value="Convert" action="#{convManager.convertCurrency}"/>
+                <h:commandButton value="Convert" action="#{convManager.convertCurrency()}"/>
             </p>
-            <hr/>
+
         </h:form>
     </h:body>
 </html>

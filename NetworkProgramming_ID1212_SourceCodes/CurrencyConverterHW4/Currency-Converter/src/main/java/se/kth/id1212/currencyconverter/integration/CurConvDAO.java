@@ -27,15 +27,14 @@ public class CurConvDAO {
     private EntityManager em;
     
     
-     public String converter(String fromCurr, String toCurr, Double amount){
-         
-        Currency currency = em.find(Currency.class , fromCurr);
+     public Currency converter(String fromCurr, String toCurr, Double amount) {
+
+        Currency currency = em.find(Currency.class, fromCurr);
         if (currency == null) {
             throw new EntityNotFoundException("Currency does not exist " + fromCurr);
         }
-        String converted =  currency.convert(toCurr,amount);
-        return converted;
         
+        return currency;
     }
     
 }

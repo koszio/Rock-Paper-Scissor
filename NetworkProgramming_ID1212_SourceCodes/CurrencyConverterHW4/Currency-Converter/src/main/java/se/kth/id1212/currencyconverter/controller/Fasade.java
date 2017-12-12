@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import se.kth.id1212.currencyconverter.integration.CurConvDAO;
+import se.kth.id1212.currencyconverter.model.Currency;
 
 /**
  *
@@ -23,11 +24,10 @@ import se.kth.id1212.currencyconverter.integration.CurConvDAO;
 public class Fasade {
     @EJB CurConvDAO curConvDAO;
     
-         public String converter(String fromCurr, String toCurr, Double amount){
-
-             return curConvDAO.converter(fromCurr, toCurr, amount);
-         }    
-    
+      public String converter(String fromCurr, String toCurr, Double amount) {
+      Currency currency = curConvDAO.converter(fromCurr, toCurr, amount);
+      return currency.convert(toCurr, amount);
+    }
    
 
     
